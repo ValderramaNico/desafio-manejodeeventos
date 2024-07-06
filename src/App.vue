@@ -1,26 +1,71 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <div>
+      <FormComponent @agregarCita="citas.push($event)" />
+    </div>
+    <br>
+    <div class="noAppointment" v-if="citas.length === 0">
+      <p>No hay consultas registradas.</p>
+    </div>
+    <div class="appointmentWrapper" v-else>
+      <CardComponent
+        v-for="(cita, index) in citas"
+        :key="index"
+        :nombre="cita.nombre"
+        :fecha="cita.fecha"
+        :hora="cita.hora"
+        :motivo="cita.motivo"
+        :gravedad="cita.gravedad"
+        @eliminarCita="eliminarCita(index)"
+      />
+    </div>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import CardComponent from "./components/CardComponent.vue";
+import FormComponent from "./components/FormComponent.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    CardComponent,
+    FormComponent,
+  },
+  data() {
+    return {
+      citas: [],
+    };
+  },
+  methods: {
+    agregarCita(nuevaCita) {
+      this.citas.push(nuevaCita);
+    },
+    eliminarCita(index) {
+      this.citas.splice(index, 1);
+    },
+  },
+};
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3%;
+  font-family: sans-serif, Arial, Helvetica;
+}
+
+.appointmentWrapper{
+display: flex;
+flex-wrap: wrap;
+gap: 20px;
+}
+
+.noAppointment {
+  display: flex;
+  justify-content: center;
+  color: red
 }
 </style>
