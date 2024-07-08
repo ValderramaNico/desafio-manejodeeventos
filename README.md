@@ -19,3 +19,9 @@
 5.- Comunicar componentes hijos con su padre a través de la emisión de eventos (se muestra ejemplo de los inputs con v-model y el script usado para darle funcionalidad en el elemento padre cuando se renderiza la `card`)
 
 ![alt text](<src/utils/code 5.png>)![alt text](<src/utils/code 5.5.png>)
+
+--------------------------------------------------------------------------------
+
+Despliegue de la app en el siguiente link:
+
+https://desafio-manejodeeventos-i1tejhnon-nico-valderramas-projects.vercel.app/
