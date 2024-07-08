@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <FormComponent @agregarCita="citas.push($event)" />
+      <FormComponent @agregarCita="agregarCita" />
     </div>
     <br>
     <div class="noAppointment" v-if="citas.length === 0">
